@@ -44,3 +44,29 @@ Print the answer as a part of a message::
 to other fixed lines in Bangalore."
 The percentage should have 2 decimal digits
 """
+
+# Use set data type to capture receiver phone numbers as we need unique elements only
+receiver_list_all = set()
+
+# Counter for couting calls initiated to all receivers by Bangalore i.e (080)
+count_all = 0
+
+# Counter for couting all calls initiated to Bangalore receivers by Bangalore i.e (080)
+count_bangalore = 0
+
+for call in calls:
+    if "(080)" in call[0]:
+        if "(080)" in call[1]:
+            count_bangalore += 1
+
+        receiver_list_all.add(call[1])
+        count_all += 1
+
+# Part A
+print("The numbers called by people in Bangalore have codes:")
+for receiver in receiver_list_all:
+    print(receiver)
+
+# Part B
+percentage_bangalore_calls = round(100 * count_bangalore / count_all, 2)
+print("{} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.".format(percentage_bangalore_calls))
